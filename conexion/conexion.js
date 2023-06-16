@@ -1,23 +1,21 @@
 const mongoose = require('mongoose');
-const { MONGOLOCAL, MONGOATLAS } = require('./mongo ');
+require('dotenv').config();
 
 //creamos la conexion a mongo db con mongoose
 
-const getConnection = async () => {
-    try {
-        await mongoose.connect(MONGOATLAS, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-            //serverApi: ServerApiVersion.v1    
-        });
-        return 'Conexion a la base local / Atlas exitosa'
-        
-    } catch (error) {
-        console.log(error);
-        throw new Error('Error: ' + error.message);
-    }
+const MONGOLOCAL = process.env.MONGOLOCAL;
+const MONGOATLAS = process.env.MONGOATLAS;
 
-}
 
-module.exports = {
-    getConnection}
+//Conexión a la database de Mongo - 2
+
+mongoose.connect(MONGOATLAS, {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true, 
+})
+    .then(()=> {
+        console.log(`Database conectada a Local/Atlas`);
+    })
+    .catch((error) => {
+        console.log(`El error es: ${error}`)
+    })

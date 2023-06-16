@@ -2,7 +2,6 @@ const user = require('../DBmodels/newUser');
 
 const nuevoUsuario = async (req, res) => {
     
-     
     const { nombre, apellido, email, password } = req.body;
     
     //3. Verificar si el usuario ya existe
