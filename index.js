@@ -29,7 +29,9 @@ app.post('/usuarios', async (req, res) => {
     //7. Insertamos en la Database el nuevo usuario
     await nuevoUsuario.save();
 
-    
+    res.json({
+        saludo: 'Dato Guardado'   
+    }) 
 });
 
 // obtenemos toda la lista de clientes
